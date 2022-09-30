@@ -1,0 +1,45 @@
+﻿# Introdução
+
+O passo básico para utilizar a DI é o seguinte:
+
+1. Construir a aplicação pensando na implementação da DI;
+2. Adicionar referência ao Autofac utilizando o Nuget;
+3. Na classe de inicialização (Ou uma classe separada, estática preferencialmente) do aplicativo:
+    1. Crie um `ContainerBuilder`;
+    2. Registre os componentes;
+    3. Construa o container e armazene para usa-lo depois;
+
+Exemplo:
+
+```csharp
+using Autofac;
+
+namespace InjecaoDependencia
+{
+   //Com Autofac
+    public class Program
+    {
+        public static void Main()
+        {
+            //Criação do construtor do container    
+            var builder = new ContainerBuilder();
+
+            //Registro de dependências
+            builder.RegisterType<Celular>().As<IProduto>();
+
+            //Criação do container   
+            var container = builder.Build();
+        }
+    }
+}
+```
+
+## Executando:
+
+Durante a execução do aplicativo, você precisará fazer uso dos componentes registrados. Você faz isso *resolvendo*-os a partir de um *escopo vitalício* .
+
+O contêiner em si *é* um escopo vitalício e, tecnicamente, você pode resolver as coisas diretamente do contêiner. **No entanto, não é recomendável resolver diretamente do contêiner** .
+
+Quando você resolve um componente, dependendo do escopo de instância definido , uma nova instância do objeto é criada. (Resolver um componente é aproximadamente equivalente a chamar "new" para instanciar uma classe.) No entanto, o contêiner dura toda a vida útil do seu aplicativo. Se você resolver muitas coisas diretamente do contêiner, pode acabar com muitas coisas esperando para serem descartadas. Isso não é bom (e você pode ver um “vazamento de memória” fazendo isso).
+
+Em vez disso, crie um contêiner filho e resolva a partir disso. Quando terminar de resolver os componentes, descarte o escopo filho e tudo será limpo.
