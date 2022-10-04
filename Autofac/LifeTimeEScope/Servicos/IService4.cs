@@ -1,0 +1,7 @@
+﻿namespace LifeTimeScope.Servicos
+{
+    public interface IService4
+    {
+        void Dados4();
+    }
+}
