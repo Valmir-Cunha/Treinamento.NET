@@ -8,12 +8,12 @@ namespace ResolvendoServicos.Program
     {
         public static void Main()
         {
-            //ResolvendoServicosComParamentros();
+            ResolvendoServicosComParamentros();
             //ResolvendoServicosComDependenciasPreguicosa();
             //ResolvendoServicosComLifeTimeControlado();
             //ResolvendoServicosComInstanciacaoDinanmica();
             //ResolvendoServicosComParametros();
-            ResolvendoServicosComTiposDeParametrosDuplicados();
+            //ResolvendoServicosComTiposDeParametrosDuplicados();
         }
 
 
@@ -26,6 +26,10 @@ namespace ResolvendoServicos.Program
                 Cliente cliente = (Cliente) classe;
                 Console.WriteLine("Instancia criada passando parâmtros no resolve:");
                 Console.WriteLine($"Id cliente:{cliente._id} \nNome cliente: {cliente._nome}");
+
+                Console.WriteLine("Instancia criada passando parâmtros no resolve com expressão lambda:");
+                var classe6 = containerFilho.Resolve<IService3>(new NamedParameter("id", Guid.NewGuid()), new NamedParameter("nome", "Fulano"));
+                classe6.Dados3();
             }
         }
 

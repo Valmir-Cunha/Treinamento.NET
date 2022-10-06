@@ -30,6 +30,8 @@ namespace ResolvendoServicos
             _builder.RegisterType<ClasseParametrizada>().AsSelf();
             
             _builder.RegisterType<Cliente>().As<IPessoa>();
+            _builder.Register((c, p) => new Class6(p.Named<Guid>("id"), p.Named<string>("nome")))
+                .As<IService3>();
 
             _builder.RegisterGeneratedFactory<FactoryDelegate>(new TypedService(typeof(IPessoa)));
 

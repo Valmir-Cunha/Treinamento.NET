@@ -11,7 +11,7 @@ namespace InjecaoDependencia
     {
         public static void Main()
         {
-            ComponentesPorInstancia();
+            RegistrosComParametros();
         }
 
         public static void ComponentesPorTipo()
@@ -52,6 +52,26 @@ namespace InjecaoDependencia
                 }
                 var classe4 = container.Resolve<IService4>();
                 classe4.Dados4();
+            }
+        }
+
+        public static void RegistrosComParametros()
+        {
+            RegistroComParametros.RegistrarComponentes();
+            using (var container = RegistroComParametros.CarregarContainer())
+            {
+                Console.WriteLine("Por nome");
+                var cliente = container.Resolve<IService1>();
+                cliente.Dados();
+                Console.WriteLine("Por tipo");
+                var classe5 = container.Resolve<IService4>();
+                classe5.Dados4();
+                Console.WriteLine("Por método resolved");
+                var classe6 = container.Resolve<IService3>();
+                classe6.Dados3();
+                Console.WriteLine("Por expressão lambda");
+                var classeLambda = container.Resolve<Class6>(new NamedParameter("id", Guid.NewGuid()), new NamedParameter("nome", "Teste Lambda"));
+                classeLambda.Dados3();
             }
         }
     }
