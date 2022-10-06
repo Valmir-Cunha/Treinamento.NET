@@ -8,7 +8,6 @@ namespace LifeTimeScope.Componentes
 
         public Class5()
         {
-            Console.WriteLine(this.GetType());
             Id = Guid.NewGuid();
         }
 

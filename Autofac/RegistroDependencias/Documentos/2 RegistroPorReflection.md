@@ -33,8 +33,6 @@ Para entender um pouco mais sobre essa escolha, assista o seguinte vídeo: [**Aq
 
 Porém, mesmo com a escolha automática feita pelo Autofac,  é possível selecionar o construtor manualmente, utilizando o método `UsingConstructor` e passando os tipos dos parâmetros do construtor.
 
-Existem outras maneiras de selecionar o construtor, mas são um pouco avançadas para o momento atual.
-
 ### Registro por instância:
 
 O registro por instância trata-se de instanciar um objeto, da maneira que desejar, e logo após adicionar essa instância ao contêiner para utilização. Isso é feito usando o `RegisterInstance`.

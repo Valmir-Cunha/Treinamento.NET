@@ -31,12 +31,11 @@ namespace DependenciasCondicionais
 
             _builder.RegisterType<Class3>().As<IService3>().InstancePerDependency();
             
-            //Irá registrar classe2 somente se tiver um registro de IService
+            //Irá registrar classe4 somente se tiver um registro de IService e um registro de IService3
             _builder.RegisterType<Class4>().As<IService4>()
                 .OnlyIf(reg => reg.IsRegistered(new TypedService(typeof(IService))) && reg.IsRegistered(new TypedService(typeof(IService3))));
 
             _scope = _builder.Build();
         }
-
     }
 }
