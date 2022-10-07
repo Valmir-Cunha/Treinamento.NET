@@ -11,7 +11,6 @@ namespace LifeTimeScope
             //IntanciaUnica();
             //IntanciaPorTempoDeVida();
             IntanciaPorTempoDeVidaDeEscopoCorrespondente();
-            //InstanciaPorSolicitacao();
         }
 
         public static void InstanciaPorDependencia()
@@ -89,23 +88,6 @@ namespace LifeTimeScope
                 }
             }
         }
-
-        //Erro
-        public static void InstanciaPorSolicitacao()
-        {
-            Registros.RegistrarComponentes();
-            using (var containerFilho = Registros.CarregarContainer())
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    var classe = containerFilho.Resolve<IService5>();
-                    Console.Write($"Instância {i}: \nId:");
-                    classe.Dados5();
-                }
-            }
-        }
-
-
 
     }
 }
